@@ -1,0 +1,30 @@
+{
+  "name": "angular-google-maps-tsp",
+  "homepage": "https://github.com/TechNaturally/angular-google-maps-tsp",
+  "authors": [
+    "Pat Long <plong00@gmail.com>"
+  ],
+  "description": "Angular wrapper for the TSP Solver located at: https://github.com/tzmartin/Google-Maps-TSP-Solver",
+  "main": "angular-google-maps-tsp.js",
+  "moduleType": [],
+  "keywords": [
+    "angular",
+    "google",
+    "maps",
+    "travelling",
+    "salesman",
+    "problem",
+    "tsp"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Google-Maps-TSP-Solver": "google-maps-tsp-solver#*"
+  }
+}
