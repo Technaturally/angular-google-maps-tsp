@@ -25,6 +25,7 @@
     "tests"
   ],
   "dependencies": {
+    "angular": "*",
     "Google-Maps-TSP-Solver": "google-maps-tsp-solver#*"
   }
 }
