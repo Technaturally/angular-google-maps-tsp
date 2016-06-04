@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Angular Google Maps TSP Demo</title>
+
+		<!-- jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+		<!-- angularjs core -->
+		<script src="../bower_components/angular/angular.js"></script>
+
+		<!-- Note that angular-google-maps is not a dependency, but it is the easiest way to load google maps into your angular app.  For this demo to work, you must install it with bower install angular-google-maps -->
+		<script src='../bower_components/lodash/dist/lodash.js'></script>
+		<script src="../bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+		<script src="../bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+
+		<!-- Google-Maps-TSP-Solver files must be loaded before angular-google-maps-tsp.js -->
+		<script src="../bower_components/Google-Maps-TSP-Solver/tsp.js"></script>
+		<script src="../bower_components/Google-Maps-TSP-Solver/BpTspSolver.js"></script>
+
+		<!-- load the angular-google-maps-tsp wrapper -->
+		<script src="../angular-google-maps-tsp.js"></script>
+
+		<!-- demo files -->
+		<script src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<h2>Angular Google Maps TSP Demo</h2>
+			<div class="row" ng-app="gmaps.tsp.demo" ng-controller="DemoController">
+				<div class="controls col-xs-8 row">
+					<div class="col-xs-6">
+						<div class="form-group marker-count">
+							<label for="marker-count">Marker Count</label>
+							<input class="form-control marker-count" type="number" id="marker-count" ng-model="markerCount" />
+						</div>
+						<button class="btn btn-primary" ng-click="generateMarkers()">Generate Markers</button>
+					</div>
+
+					<div class="col-xs-6">
+						<div class="form-group round-trip">
+							<label for="round-trip">Round Trip</label>
+							<input class="form-control round-trip" type="checkbox" id="round-trip" ng-model="roundTrip" />
+						</div>
+						<button class="btn btn-success" ng-click="calculateDirections(roundTrip)" ng-disabled="calculating">Calculate Directions</button>
+					</div>
+				</div>
+
+				<div class="map col-xs-8">
+					<ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds" control="map.control">
+						<ui-gmap-markers ng-if="markers && !directionMarkers.length" models="markers" coords="'self'" icon="'icon'" labelContent="'label'"></ui-gmap-markers>
+
+						<ui-gmap-markers ng-if="directionMarkers.length" models="directionMarkers" coords="'self'" icon="'icon'" click="click()">
+							<ui-gmap-windows show="show">
+								<div ng-non-bindable>{{content}}</div>
+							</ui-gmap-windows>
+						</ui-gmap-markers>
+					</ui-gmap-google-map>
+				</div>
+
+				<div class="col-xs-4">
+					<span ng-show="calculating" class="directions-calculating"><span class="glyphicon glyphicon-repeat spinning"></span> Calculating directions...</span>
+					<div ng-hide="calculating" class="directions"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
