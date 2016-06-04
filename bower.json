@@ -1,5 +1,6 @@
 {
   "name": "angular-google-maps-tsp",
+  "version": "1.0.0",
   "homepage": "https://github.com/TechNaturally/angular-google-maps-tsp",
   "authors": [
     "Pat Long <plong00@gmail.com>"
